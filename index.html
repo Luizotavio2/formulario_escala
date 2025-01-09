@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escala De Eventos</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <div class="form-container">
+        <h1>Arena Produções</h1>
+        <h2>Cadastro de Escala</h2>
+
+        <form id="escalaForm">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+
+            <label for="setor">Escolha o Setor:</label>
+            <select id="setor" name="setor" required>
+                <option value="" disabled selected>Selecione um setor</option>
+                <option value="brinquedo-inflavel">Brinquedo Inflável</option>
+                <option value="pipoca">Pipoca</option>
+                <option value="algodao-doce">Algodão Doce</option>
+                <option value="recreacao-sabao">Recreação com Sabão</option>
+                <option value="recreacao-balao">Recreação com Balão</option>
+                <option value="pintura facial">Pintura facial</option>
+            </select>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('escalaForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            // Captura os dados do formulário
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const setor = document.getElementById('setor').value;
+
+            // Formata os dados em um objeto
+            const dados = {
+                Nome: nome,
+                Email: email,
+                Telefone: telefone,
+                Setor: setor
+            };
+
+            // Envia os dados para o Google Sheets usando a API
+            fetch('https://script.google.com/macros/s/AKfycbxMBFA2-yAmtLdFuhfXscYxiBkcCkTxseSeh4hQ1wdOMPSFZN4KdUrcgFsAsrmrBlGJ/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dados)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'sucesso') {
+                    document.body.innerHTML = `
+                        <div style="display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center;">
+                            <h1 style="font-size: 28px; color: rgba(0, 0, 0, 0.7)">Formulário Enviado com Sucesso!</h1>
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Resposta inválida do servidor.');
+                }
+            })
+            .catch(error => {
+                alert('Ocorreu um erro: ' + error.message);
+            });
+        });
+    </script>
+</body>
+</html>
