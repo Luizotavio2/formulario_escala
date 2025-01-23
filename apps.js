@@ -23,6 +23,7 @@ document.getElementById('escalaForm').addEventListener('submit', function(event)
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
+                'Access-Control-Allow-Origin': '*',
                 'X-Requested-With': 'XMLHttpRequest'
             }
         }).then(response => {
