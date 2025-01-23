@@ -1,5 +1,4 @@
-const axios = require('axios');
-
+// Import Axios from CDN in your HTML file instead
 document.getElementById('escalaForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -19,10 +18,12 @@ document.getElementById('escalaForm').addEventListener('submit', function(event)
         console.log("executing axios");
         axios({
             method: 'post',
-            url: 'https://script.google.com/macros/s/AKfycbxMBFA2-yAmtLdFuhfXscYxiBkcCkTxseSeh4hQ1wdOMPSFZN4KdUrcgFsAsrmrBlGJ/exec',
+            url: 'https://script.google.com/macros/s/AKfycbzNrZ2L9Ic4EVg1RSP3ZnMxSufFcV3H4URJ_vYonzlpzuoLw3clz7Tgk2I9mwsJ_-w4/exec',
             data: JSON.stringify(dados),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
             }
         }).then(response => {
             if (response.data.status === 'sucesso') {
