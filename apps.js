@@ -1,4 +1,4 @@
-import { axios } from 'axios';
+const axios = require('axios');
 
 document.getElementById('escalaForm').addEventListener('submit', function(event) {
     event.preventDefault();
