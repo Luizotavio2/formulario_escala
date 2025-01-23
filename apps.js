@@ -1,13 +1,11 @@
 document.getElementById('escalaForm').addEventListener('submit', function(event) {
     event.preventDefault(); 
 
-    // Captura os dados do formulário
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
     const telefone = document.getElementById('telefone').value;
     const setor = document.getElementById('setor').value;
 
-    // Formata os dados em um objeto
     const dados = {
         Nome: nome,
         Email: email,
@@ -15,7 +13,6 @@ document.getElementById('escalaForm').addEventListener('submit', function(event)
         Setor: setor
     };
 
-    // Envia os dados para o Google Sheets usando a API
     fetch('https://script.google.com/macros/s/AKfycbxMBFA2-yAmtLdFuhfXscYxiBkcCkTxseSeh4hQ1wdOMPSFZN4KdUrcgFsAsrmrBlGJ/exec', {
         method: 'POST',
         headers: {
