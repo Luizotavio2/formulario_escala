@@ -1,4 +1,3 @@
-// Import Axios from CDN in your HTML file instead
 document.getElementById('escalaForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -45,33 +44,4 @@ document.getElementById('escalaForm').addEventListener('submit', function(event)
         console.log(e);
     }
 
-
-
-    // fetch('https://script.google.com/macros/s/AKfycbxMBFA2-yAmtLdFuhfXscYxiBkcCkTxseSeh4hQ1wdOMPSFZN4KdUrcgFsAsrmrBlGJ/exec', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(dados)
-    // })
-    // .then(response => {
-    //     if (!response.ok) {
-    //         throw new Error(`Erro ${response.status}: ${response.statusText}`);
-    //     }
-    //     return response.json();
-    // })
-    // .then(data => {
-    //     if (data.status === 'sucesso') {
-    //         document.body.innerHTML = `
-    //             <div style="display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center;">
-    //                 <h1 style="font-size: 28px; color: rgba(0, 0, 0, 0.7)">Formulário Enviado com Sucesso!</h1>
-    //             </div>
-    //         `;
-    //     } else {
-    //         throw new Error('Resposta inválida do servidor.');
-    //     }
-    // })
-    // .catch(error => {
-    //     alert('Ocorreu um erro: ' + error.message);
-    // });
 });
